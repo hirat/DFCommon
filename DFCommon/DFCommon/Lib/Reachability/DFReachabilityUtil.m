@@ -12,6 +12,8 @@
 
 +(BOOL) isNetworkAvailable
 {
-    return [Reachability isEnable3G] || [Reachability isEnableWIFI]?YES:NO;
+    BOOL isEnable3G = ([[Reachability reachabilityForInternetConnection] currentReachabilityStatus] != NotReachable);
+    BOOL isEnableWiFi = ([[Reachability reachabilityForLocalWiFi] currentReachabilityStatus] != NotReachable);
+    return (isEnable3G || isEnableWiFi);
 }
 @end
